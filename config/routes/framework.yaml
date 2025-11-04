@@ -2,3 +2,10 @@ when@dev:
     _errors:
         resource: '@FrameworkBundle/Resources/config/routing/errors.php'
         prefix: /_error
+
+calcul:
+    path: /calcul/{nb}
+    controller: App\Controller\MainController::indexter
+    requirements:
+        nb: '(0|[1-9]\d?|100)'
+    methods: GET
