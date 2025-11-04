@@ -1,17 +1,24 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Liste des tuteurs</title>
-</head>
-<body>
-  <h1>Liste des tuteurs</h1>
-
-  <ul>
+<table border="1">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Nom</th>
+      <th>Prénom</th>
+      <th>Entreprise</th>
+      <th>Email</th>
+      <th>Téléphone</th>
+    </tr>
+  </thead>
+  <tbody>
     {% for tuteur in tuteurs %}
-      <li>{{ tuteur.prenom }} {{ tuteur.nom }}</li>
+      <tr>
+        <td>{{ tuteur.id }}</td>
+        <td>{{ tuteur.nom }}</td>
+        <td>{{ tuteur.prenom }}</td>
+        <td>{{ tuteur.entreprise }}</td>
+        <td>{{ tuteur.email }}</td>
+        <td>{{ tuteur.telephone }}</td>
+      </tr>
     {% endfor %}
-  </ul>
-</body>
-</html>
+  </tbody>
+</table>

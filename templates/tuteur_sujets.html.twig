@@ -1,0 +1,11 @@
+<h2>Liste des sujets</h2>
+
+{% if sujets is not empty %}
+  <ul>
+    {% for sujet in sujets %}
+      <li>{{ sujet }}</li>
+    {% endfor %}
+  </ul>
+{% else %}
+  <p>Aucun sujet trouvé.</p>
+{% endif %}

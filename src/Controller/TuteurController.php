@@ -41,19 +41,34 @@ class TuteurController {
 
   #[Route('/app_tuteur/tuteurs')]
   public function tuteurs(Request $request, Environment $twig): Response {
-    $html = $twig->render('tuteur_tuteurs.html.twig', ["tuteurs" => $this->$tuteurs]);
+    $html = $twig->render('tuteur_tuteurs.html.twig', ["tuteurs" => $this->tuteurs]);
     return new Response($html); 
   }
 
   #[Route('/app_tuteur/etudiants')]
   public function etudiants(Request $request, Environment $twig): Response {
-    $html = $twig->render('tuteur_etudiants.html.twig');
+    $etudiants = [];
+    foreach ($this->tuteurs as $tuteur) {
+      foreach ($tuteur["etudiants"] as $etudiant) {
+        $etudiants[] = $etudiant;
+      }
+    }
+    $html = $twig->render('tuteur_etudiants.html.twig', ["etudiants" => $etudiants]);
     return new Response($html); 
   }
 
-   #[Route('/app_tuteur/sujets')]
+  #[Route('/app_tuteur/sujets')]
   public function sujets(Request $request, Environment $twig): Response {
-    $html = $twig->render('tuteur_sujets.html.twig');
-    return new Response($html); 
+      $sujets = [];
+
+      foreach ($this->tuteurs as $tuteur) {
+          foreach ($tuteur["etudiants"] as $etudiant) {
+              $sujets[] = $etudiant["sujet"]; // clé "sujet" au singulier
+          }
+      }
+
+      $html = $twig->render('tuteur_sujets.html.twig', ["sujets" => $sujets]);
+      return new Response($html); 
   }
+
 }
